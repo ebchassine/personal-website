@@ -19,7 +19,10 @@ function Sidebar({ sections, activeSection, onSectionClick }) {
   return (
     <aside className="w-64 bg-background text-text h-screen flex flex-col">
       <div className="p-6">
-        <h1 className="text-2xl font-bold mb-8">Ethan Wong-Chassine</h1>
+        <h1 className="text-2xl font-bold mb-8">
+            Ethan <br>
+            </br>Wong-Chassine
+            </h1>
         <nav>
           <ul className="space-y-4">
             {sections.map((section) => {
