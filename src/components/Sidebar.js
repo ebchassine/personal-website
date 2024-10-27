@@ -17,7 +17,6 @@ function Sidebar() {
         <h1 className="text-2xl font-bold mb-8">
             Ethan<br></br>
             Wong-Chassine
-
         </h1>
         <nav>
           <ul className="space-y-4">

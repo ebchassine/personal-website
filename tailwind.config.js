@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
+
       },
       colors: {
         background: '#F0EAE0', // eggshell/light beige
