@@ -7,17 +7,17 @@ const PageTransition = () => {
 
   useEffect(() => {
     setIsAnimating(true);
-    const timer = setTimeout(() => setIsAnimating(false), 1000); // Increased to 1000ms for the full animation
+    const timer = setTimeout(() => setIsAnimating(false), 1000); // Duration of animation
     return () => clearTimeout(timer);
   }, [location]);
 
   return (
     <div
-      className={`fixed inset-0 z-50 pointer-events-none overflow-hidden ${
+      className={`fixed inset-0 z-50 pointer-events-none ${
         isAnimating ? 'animate-page-transition' : ''
       }`}
     >
-      <div className="absolute inset-0 bg-text transform -translate-x-full"></div>
+      <div className="absolute inset-0 bg-primary transform -translate-x-full"></div>
       <style jsx>{`
         @keyframes page-transition {
           0% {
@@ -31,7 +31,7 @@ const PageTransition = () => {
           }
         }
         .animate-page-transition > div {
-          animation: page-transition 1s cubic-bezier(0.76, 0, 0.24, 1) forwards; 
+          animation: page-transition 1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
         }
       `}</style>
     </div>

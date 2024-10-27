@@ -1,44 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import PageTransition from './components/PageTransition';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
 import About from './pages/About';
+import Projects from './pages/Projects';
+import Gallery from './pages/Gallery';
 
-function AppContent() {
-  const [displayLocation, setDisplayLocation] = useState(null);
-  const location = useLocation();
+const sections = [
+  { id: 'about', title: 'About', component: About },
+  { id: 'projects', title: 'Projects', component: Projects },
+  { id: 'gallery', title: 'Gallery', component: Gallery },
+];
+
+function App() {
+  const [activeSection, setActiveSection] = useState('about');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const sectionRefs = useRef({});
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setDisplayLocation(location);
-    }, 500); // This should match the duration of the page transition animation
+    sections.forEach(section => {
+      sectionRefs.current[section.id] = React.createRef();
+    });
+  }, []);
 
-    return () => clearTimeout(timer);
-  }, [location]);
+  const scrollToSection = (sectionId) => {
+    setIsTransitioning(true);
+    setActiveSection(sectionId);
+    setTimeout(() => {
+      sectionRefs.current[sectionId].current.scrollIntoView({ behavior: 'smooth' });
+      setIsTransitioning(false);
+    }, 500); // This should match the duration of your transition animation
+  };
 
   return (
     <div className="flex h-screen bg-background text-text font-sans">
-      <Sidebar />
-      <div className="w-px bg-text"></div>
+      <Sidebar sections={sections} activeSection={activeSection} onSectionClick={scrollToSection} />
       <main className="flex-1 overflow-auto">
-        <PageTransition />
-        <Routes location={displayLocation || location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <PageTransition isAnimating={isTransitioning} />
+        {sections.map(({ id, component: SectionComponent }) => (
+          <div key={id} ref={sectionRefs.current[id]} className="min-h-screen py-16">
+            <SectionComponent />
+          </div>
+        ))}
       </main>
     </div>
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <AppContent />
-    </Router>
   );
 }
 

@@ -1,45 +1,42 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Home, Folder, User } from 'react-feather';
+import { Home, Folder, Image } from 'react-feather';
 
-const menuItems = [
-  { name: 'Home', icon: Home, path: '/' },
-  { name: 'Projects', icon: Folder, path: '/projects' },
-  { name: 'About', icon: User, path: '/about' },
-];
+const iconMap = {
+  'about': Home,
+  'projects': Folder,
+  'gallery': Image,
+};
 
-function Sidebar() {
-  const location = useLocation();
-
+function Sidebar({ sections, activeSection, onSectionClick }) {
   return (
     <aside className="w-64 bg-background text-text h-screen flex flex-col">
       <div className="p-6">
-        <h1 className="text-2xl font-bold mb-8">
-            Ethan<br></br>
-            Wong-Chassine
-        </h1>
+        <h1 className="text-2xl font-bold mb-8">Your Name</h1>
         <nav>
           <ul className="space-y-4">
-            {menuItems.map((item) => (
-              <li key={item.name}>
-                <Link
-                  to={item.path}
-                  className={`flex items-center space-x-2 p-2 rounded transition-colors ${
-                    location.pathname === item.path
-                      ? 'bg-text text-background'
-                      : 'hover:bg-text hover:bg-opacity-10'
-                  }`}
-                >
-                  <item.icon size={20} />
-                  <span>{item.name}</span>
-                </Link>
-              </li>
-            ))}
+            {sections.map((section) => {
+              const Icon = iconMap[section.id];
+              return (
+                <li key={section.id}>
+                  <button
+                    onClick={() => onSectionClick(section.id)}
+                    className={`flex items-center space-x-2 p-2 rounded transition-colors w-full text-left ${
+                      activeSection === section.id
+                        ? 'bg-text text-background'
+                        : 'hover:bg-text hover:bg-opacity-10'
+                    }`}
+                  >
+                    <Icon size={20} />
+                    <span>{section.title}</span>
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
       <div className="mt-auto p-6">
-        {/* <p className="text-sm">&copy; 2023 Your Name</p> */}
+        <p className="text-sm">&copy; 2023 Your Name</p>
       </div>
     </aside>
   );
