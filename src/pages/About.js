@@ -8,11 +8,10 @@ function About() {
       
       <ContentBox className="flex flex-col md:flex-row items-center mb-16">
         <div className="md:w-1/2 md:pr-8 mb-4 md:mb-0">
-          <h3 className="text-2xl font-semibold mb-4">Who I Am</h3>
+          <h3 className="text-2xl font-semibold mb-4">Quickstart</h3>
           <p className="text-lg leading-relaxed">
-            I'm a passionate web developer with a keen eye for design and a love for creating 
-            intuitive, responsive web applications. With expertise in React, Node.js, and modern web 
-            technologies, I strive to build seamless user experiences that make a difference.
+          Hi, my name is Ethan Wong-Chassine.  I’m a Junior (Class of 2026) at Dartmouth College, 
+          majoring in Computer Science, from New York City. 
           </p>
         </div>
         <div className="md:w-1/2">
@@ -22,15 +21,33 @@ function About() {
 
       <ContentBox className="flex flex-col md:flex-row-reverse items-center">
         <div className="md:w-1/2 md:pl-8 mb-4 md:mb-0">
-          <h3 className="text-2xl font-semibold mb-4">My Skills</h3>
+          <h3 className="text-2xl font-semibold mb-4">My Academic Experience</h3>
           <p className="text-lg leading-relaxed">
-            I specialize in front-end development with React, creating responsive layouts with 
-            CSS and Tailwind, and building robust back-end systems with Node.js and Express. 
-            I'm also experienced in database design, API development, and deployment strategies.
+          To date, I have taken eight classes in computer science including Algorithms, 
+            Data Structures, Software in C, Introductory Linear Algebra, Digital Graphics,
+            and Security and Privacy.  My classes are taught in intensive 10-week terms 
+            (vs. traditional 16-week semesters) and I enjoy the fast-paced learning 
+            environment it offers.  My interests are expansive, and I am eager to gain 
+            exposure through training programs, internships, projects, or mentorships.
           </p>
         </div>
         <div className="md:w-1/2">
           <img src="/placeholder.svg?height=300&width=400" alt="My Skills" className="rounded-lg shadow-md" />
+        </div>
+      </ContentBox>
+      <ContentBox className="flex flex-col md:flex-row items-center mb-16">
+        <div className="md:w-1/2 md:pr-8 mb-4 md:mb-0">
+          <h3 className="text-2xl font-semibold mb-4">Skills and Interests</h3>
+          <p className="text-lg leading-relaxed">
+            My technical skills include Python, Java, C, bash/zsh, git, AWS EC2, 
+            and some React + Javascript.  In my free time, I enjoy playing and 
+            watching basketball (I'm a huge Knicks fan), watching Formula 1, 
+            keeping up to date with Middle Eastern politics, experiment with video
+            production in Premiere, and listen + mixing music
+          </p>
+        </div>
+        <div className="md:w-1/2">
+          <img src="/placeholder.svg?height=300&width=400" alt="About Me" className="rounded-lg shadow-md" />
         </div>
       </ContentBox>
     </section>
