@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 const carouselItems = [
@@ -16,24 +16,26 @@ function Carousel() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const carouselRef = useRef(null);
 
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
+  const animate = useCallback(() => {
+    setScrollPosition((prevPosition) => {
+      const carousel = carouselRef.current;
+      if (!carousel) return prevPosition;
 
-    const scrollWidth = carousel.scrollWidth;
-    const clientWidth = carousel.clientWidth;
-
-    const animate = () => {
-      setScrollPosition((prevPosition) => {
-        const newPosition = prevPosition + 1;
-        return newPosition > scrollWidth - clientWidth ? 0 : newPosition;
-      });
-    };
-
-    const animationId = setInterval(animate, 50);
-
-    return () => clearInterval(animationId);
+      const scrollWidth = carousel.scrollWidth;
+      const clientWidth = carousel.clientWidth;
+      const newPosition = prevPosition + 1;
+      return newPosition > scrollWidth - clientWidth ? 0 : newPosition;
+    });
   }, []);
+
+  useEffect(() => {
+    const animationFrame = requestAnimationFrame(function animateCarousel() {
+      animate();
+      requestAnimationFrame(animateCarousel);
+    });
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [animate]);
 
   useEffect(() => {
     if (carouselRef.current) {

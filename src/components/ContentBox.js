@@ -18,13 +18,15 @@ export const ContentBox = ({ children, className }) => {
       }
     );
 
-    if (boxRef.current) {
-      observer.observe(boxRef.current);
+    const currentBox = boxRef.current;
+
+    if (currentBox) {
+      observer.observe(currentBox);
     }
 
     return () => {
-      if (boxRef.current) {
-        observer.unobserve(boxRef.current);
+      if (currentBox) {
+        observer.unobserve(currentBox);
       }
     };
   }, []);

@@ -1,16 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 
-const PageTransition = () => {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    setIsAnimating(true);
-    const timer = setTimeout(() => setIsAnimating(false), 1000); // Duration of animation
-    return () => clearTimeout(timer);
-  }, [location]);
-
+const PageTransition = ({ isAnimating }) => {
   return (
     <div
       className={`fixed inset-0 z-50 pointer-events-none ${
@@ -18,7 +8,7 @@ const PageTransition = () => {
       }`}
     >
       <div className="absolute inset-0 bg-primary transform -translate-x-full"></div>
-      <style jsx>{`
+      <style>{`
         @keyframes page-transition {
           0% {
             transform: translateX(-100%);
