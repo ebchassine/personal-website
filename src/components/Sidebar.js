@@ -47,8 +47,9 @@ function Sidebar({ sections, activeSection, onSectionClick }) {
             </ul>
           </nav>
         </div>
-    
+        
        <div className="mt-auto p-6">
+        {emailCopied && <p className="p-2 text-sm text-green-900">Email copied to clipboard!</p>}
         <div className="flex space-x-4 mb-4">
           <a href="https://www.linkedin.com/in/ethan-wong-chassine-1530b1270/" target="_blank" rel="noopener noreferrer">
             <Linkedin size={20} className="hover:text-linkedin-color" aria-label="LinkedIn" />
@@ -60,7 +61,7 @@ function Sidebar({ sections, activeSection, onSectionClick }) {
             <Mail size={20} className="hover:text-gmail-color" />
           </button>
         </div>
-        {emailCopied && <p className="text-sm text-green-500">Email copied to clipboard!</p>}
+        
       </div>
     </aside>
   );
