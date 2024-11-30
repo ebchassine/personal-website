@@ -18,8 +18,8 @@ function Projects() {
             <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
             <p className="text-lg leading-relaxed">{project.description}</p>
           </div>
-          <div className="md:w-1/2">
-            <img src={project.image} alt={project.title} className="rounded-lg shadow-md" />
+          <div className="md:w-1/2 ">
+            <img src={project.image} alt={project.title} className="object-cover rounded-lg shadow-md" />
           </div>
         </ContentBox>
       ))}
